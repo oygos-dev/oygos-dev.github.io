@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>OygOS | The Power of Silivri</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 10%;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo { font-size: 1.8em; font-weight: 800; color: #39FF14; text-shadow: 0 0 10px #39FF14; }
+
+        /* Hero Section */
+        #hero {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        h1 { font-size: 4em; margin: 0; background: linear-gradient(to right, #39FF14, #007966); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        /* Neon Button */
+        .download-btn {
+            margin-top: 30px;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            color: #39FF14;
+            border: 2px solid #39FF14;
+            background: transparent;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
+        }
+
+        .download-btn:hover { background: #39FF14; color: #000; box-shadow: 0 0 40px #39FF14; transform: scale(1.05); }
+
+        /* Feature Cards */
+        .feature-cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 50px 10%;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            width: 300px;
+            transition: 0.3s;
+        }
+
+        .card:hover { transform: translateY(-10px); background: rgba(255, 255, 255, 0.07); border-color: #39FF14; }
+
+        .card h3 { color: #39FF14; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">OygOS</div>
+        <nav>Özellikler | Topluluk | Destek</nav>
+    </header>
+
+    <section id="hero">
+        <h1>THE POWER OF SILIVRI</h1>
+        <p>Debian Tabanlı, RTX 3060 Optimize Yeni Nesil İşletim Sistemi</p>
+        <button class="download-btn">Hemen İndir v1.0</button>
+    </section>
+
+    <div class="feature-cards">
+        <div class="card">
+            <h3>Oygernel v1</h3>
+            <p>Düşük gecikme süresi ve maksimum çekirdek hızı.</p>
+        </div>
+        <div class="card">
+            <h3>OygAI</h3>
+            <p>Sisteme gömülü, internetsiz yapay zeka asistanı.</p>
+        </div>
+        <div class="card">
+            <h3>Optimize</h3>
+            <p>Eski Pentium 4'ten RTX 3060'a kadar geniş destek.</p>
+        </div>
+    </div>
+</body>
+</html>
