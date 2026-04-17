@@ -3,293 +3,269 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OygOS | The Power of Silivri</title>
+    <title>OygOS | Rethinking the OS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --neon-green: #39FF14;
-            --dark-bg: #0a0a0a;
-            --glass-white: rgba(255, 255, 255, 0.05);
-            --text-gray: #aaa;
+            --neon: #39FF14;
+            --neon-glow: rgba(57, 255, 20, 0.4);
+            --bg-deep: #050505;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
         }
 
-        * {
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
         body {
-            margin: 0;
-            font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--dark-bg);
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(57, 255, 20, 0.05) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(0, 121, 102, 0.1) 0px, transparent 50%);
-            color: #f0f0f0;
+            background-color: var(--bg-deep);
+            color: #ffffff;
+            font-family: 'Space Grotesk', sans-serif;
             overflow-x: hidden;
-            line-height: 1.6;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(57, 255, 20, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 255, 170, 0.05) 0%, transparent 40%);
         }
 
-        /* HEADER */
+        /* Arka Plandaki Hareketli Grid */
+        .bg-grid {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(57, 255, 20, 0.02) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(57, 255, 20, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+        }
+
+        /* Navbar */
         header {
+            padding: 20px 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 8%;
-            background: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(57, 255, 20, 0.2);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            backdrop-filter: blur(20px);
+            position: fixed;
+            width: 100%;
+            border-bottom: 1px solid var(--border);
+            z-index: 9999;
         }
 
         .logo { 
-            font-size: 1.8em; 
-            font-weight: 900; 
-            color: var(--neon-green); 
-            text-shadow: 0 0 15px rgba(57, 255, 20, 0.5);
-            letter-spacing: 2px;
-            text-decoration: none;
+            font-size: 1.5rem; 
+            font-weight: 700; 
+            letter-spacing: -1px; 
+            color: var(--neon);
+            text-shadow: 0 0 10px var(--neon-glow);
         }
 
         nav a {
-            color: #ccc;
+            color: #888;
             text-decoration: none;
-            margin-left: 25px;
-            font-size: 0.9em;
-            transition: 0.3s;
+            margin-left: 30px;
+            font-size: 0.85rem;
             text-transform: uppercase;
-            font-weight: 600;
+            transition: 0.3s;
+            letter-spacing: 1px;
         }
 
-        nav a:hover { color: var(--neon-green); }
+        nav a:hover { color: var(--neon); }
 
-        /* HERO SECTION */
+        /* Hero Section */
         #hero {
-            height: 85vh;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 0 20px;
         }
 
-        h1 { 
-            font-size: clamp(2.5rem, 8vw, 5rem); 
-            margin: 0; 
-            background: linear-gradient(135deg, #fff 30%, var(--neon-green) 100%);
-            -webkit-background-clip: text; 
+        .hero-title {
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: 700;
+            line-height: 0.9;
+            margin-bottom: 20px;
+            background: linear-gradient(to bottom, #fff, #666);
+            -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-weight: 900;
-            letter-spacing: -2px;
         }
 
-        .hero-p {
-            font-size: 1.2em;
-            color: var(--text-gray);
-            max-width: 700px;
-            margin: 20px 0;
+        .hero-sub {
+            color: var(--neon);
+            font-family: 'Fira Code', monospace;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
         }
 
-        /* BUTTONS */
-        .download-btn {
-            margin-top: 20px;
-            padding: 18px 50px;
-            font-size: 1.1em;
+        /* Modern Cam Buton */
+        .btn-main {
+            padding: 15px 40px;
+            background: var(--neon);
             color: #000;
-            background: var(--neon-green);
-            border: none;
-            border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 0 30px rgba(57, 255, 20, 0.4);
             text-decoration: none;
-            display: inline-block;
+            border-radius: 5px;
+            font-weight: 700;
+            transition: 0.4s;
+            box-shadow: 0 10px 30px var(--neon-glow);
         }
 
-        .download-btn:hover { 
-            transform: scale(1.05);
-            box-shadow: 0 0 50px var(--neon-green);
+        .btn-main:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px var(--neon);
         }
 
-        .disabled-btn {
-            background: #222 !important;
-            color: #555 !important;
-            cursor: not-allowed !important;
-            border: 1px solid #333 !important;
-            box-shadow: none !important;
-            transform: none !important;
-        }
+        /* Kartlar Bölümü */
+        .section { padding: 100px 8%; }
 
-        /* SECTIONS GENERAL */
-        section {
-            padding: 100px 10%;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-        }
-
-        .section-title {
-            text-align: center;
-            color: var(--neon-green);
-            font-size: 2.5em;
-            margin-bottom: 60px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-
-        /* FEATURE CARDS */
-        .feature-cards {
+        .grid-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            gap: 20px;
         }
 
         .card {
-            background: var(--glass-white);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--card-bg);
+            border: 1px solid var(--border);
             padding: 40px;
-            border-radius: 24px;
-            transition: 0.4s;
-        }
-
-        .card:hover { 
-            transform: translateY(-10px); 
-            background: rgba(255, 255, 255, 0.08); 
-            border-color: var(--neon-green);
-        }
-
-        .card h3 { color: var(--neon-green); margin-top: 0; }
-        .card p { color: var(--text-gray); font-size: 0.95em; }
-
-        /* ABOUT SECTION */
-        .about-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 50px;
-        }
-
-        .about-box h3 {
-            color: var(--neon-green);
-            border-bottom: 1px solid rgba(57, 255, 20, 0.3);
-            padding-bottom: 10px;
-            display: inline-block;
-        }
-
-        /* DOWNLOAD AREA */
-        .download-container {
-            text-align: center;
-            background: linear-gradient(145deg, rgba(20,20,20,1) 0%, rgba(10,10,10,1) 100%);
-            border-radius: 40px;
-            padding: 80px 40px;
-            border: 1px dashed rgba(255, 255, 255, 0.1);
-            position: relative;
-        }
-
-        .status-badge {
-            background: #ff3e3e;
-            color: white;
-            padding: 6px 20px;
             border-radius: 20px;
-            font-size: 0.8em;
-            font-weight: bold;
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            box-shadow: 0 0 20px rgba(255, 62, 62, 0.4);
+            transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        /* FOOTER */
-        footer {
-            text-align: center;
+        .card:hover {
+            border-color: var(--neon);
+            background: rgba(57, 255, 20, 0.02);
+            transform: scale(1.02);
+        }
+
+        .card h3 { color: var(--neon); margin-bottom: 15px; font-size: 1.5rem; }
+        .card p { color: #888; line-height: 1.6; }
+
+        /* Hakkında & Vizyon Paneli */
+        .about-panel {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 40px;
+            background: rgba(255, 255, 255, 0.02);
             padding: 60px;
-            color: #444;
-            font-size: 0.9em;
+            border-radius: 30px;
+            border: 1px solid var(--border);
         }
 
-        /* RESPONSIVE */
+        .about-text h2 { font-size: 2.5rem; margin-bottom: 20px; }
+
+        /* İndirme Alanı - Glassmorphism */
+        .download-box {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(57, 255, 20, 0.1) 0%, transparent 100%);
+            padding: 80px;
+            border-radius: 40px;
+            border: 1px solid var(--neon-glow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .disabled-status {
+            position: absolute;
+            top: 20px; right: 20px;
+            color: #ff4444;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+        }
+
+        .wait-btn {
+            background: #111;
+            color: #333;
+            border: 1px solid #222;
+            padding: 15px 40px;
+            border-radius: 5px;
+            cursor: not-allowed;
+        }
+
+        footer {
+            padding: 60px 8%;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: #444;
+            font-size: 0.8rem;
+        }
+
+        /* Animasyon Gecikmeleri */
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+
         @media (max-width: 768px) {
-            header { padding: 15px 5%; }
-            nav { display: none; }
-            section { padding: 60px 5%; }
-            h1 { font-size: 3rem; }
+            .about-panel { grid-template-columns: 1fr; }
+            header nav { display: none; }
         }
     </style>
 </head>
 <body>
 
+    <div class="bg-grid"></div>
+
     <header>
-        <a href="#" class="logo">OygOS</a>
+        <div class="logo">OygOS_</div>
         <nav>
-            <a href="#features">Özellikler</a>
-            <a href="#about">Hakkımızda</a>
+            <a href="#about">Vizyon</a>
+            <a href="#features">Teknoloji</a>
             <a href="#download">İndir</a>
         </nav>
     </header>
 
-    <section id="hero" class="animate__animated animate__fadeIn">
-        <h1 class="animate__animated animate__backInDown">THE POWER OF SILIVRI</h1>
-        <p class="hero-p">Debian tabanlı, düşük kaynak tüketen, performans odaklı yeni nesil işletim sistemi.</p>
-        <a href="#download" class="download-btn">Sürüm v1.0'ı Keşfet</a>
+    <section id="hero">
+        <h1 class="hero-title animate__animated animate__fadeInUp">THE POWER<br>OF SILIVRI</h1>
+        <p class="hero-sub animate__animated animate__fadeInUp delay-1">> OS_Status: Optimization_In_Progress_</p>
+        <a href="#features" class="btn-main animate__animated animate__fadeInUp delay-2">Sistemi İncele</a>
     </section>
 
-    <section id="features">
-        <h2 class="section-title">Özellikler</h2>
-        <div class="feature-cards">
+    <section class="section" id="features">
+        <div class="grid-cards">
+            <div class="card animate__animated animate__fadeInLeft">
+                <h3>Oygernel v1</h3>
+                <p>Linux kernel mimarisini düşük donanım kaynakları için yeniden yorumladık. Gecikmesiz, saf hız.</p>
+            </div>
             <div class="card animate__animated animate__fadeInUp">
-                <h3>⚡ Oygernel v1</h3>
-                <p>Maksimum çekirdek hızı ve düşük gecikme süresiyle en eski işlemcilerde bile akıcı performans.</p>
+                <h3>OygAI Integration</h3>
+                <p>İşletim sisteminin kalbine gömülü, donanım hızlandırmalı çevrimdışı yapay zeka deneyimi.</p>
             </div>
-            <div class="card animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
-                <h3>🤖 OygAI</h3>
-                <p>Tamamen yerel çalışan, internet bağlantısı gerektirmeyen yapay zeka asistanı deneyimi.</p>
-            </div>
-            <div class="card animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
-                <h3>🚀 Geniş Destek</h3>
-                <p>Pentium 4 mimarisinden modern RTX serisi ekran kartlarına kadar uçtan uca uyumluluk.</p>
+            <div class="card animate__animated animate__fadeInRight">
+                <h3>Legacy Support</h3>
+                <p>Eski donanımlar çöp değildir. Pentium 4'ü 2026'nın ihtiyaçlarına göre canlandırıyoruz.</p>
             </div>
         </div>
     </section>
 
-    <section id="about">
-        <h2 class="section-title">Biz Kimiz?</h2>
-        <div class="about-grid">
-            <div class="about-box">
-                <p>Yazılım ve donanımın sınırlarını zorlamaya kararlı, tutkulu bir geliştirici ve teknoloji meraklısı ekibiz. Misyonumuz; optimizasyon, özelleştirme ve yenilik yoluyla teknolojiye yeni bir soluk getirmektir.</p>
-                <h3>Neler Yapıyoruz?</h3>
-                <p><strong>OS Geliştirme:</strong> Hızlı ve kararlı bir deneyim için işletim sistemleri inşa ediyoruz.</p>
-                <p><strong>Donanım Canlandırma:</strong> Eski sistemleri özel yazılım çözümleriyle yeniymiş gibi çalıştırıyoruz.</p>
+    <section class="section" id="about">
+        <div class="about-panel">
+            <div class="about-text">
+                <h2>Biz Kimiz?</h2>
+                <p style="color: #aaa; margin-bottom: 20px;">Yazılım ve donanımın sınırlarını zorlamaya kararlı, tutkulu bir geliştirici ekibiz. Misyonumuz; optimizasyon yoluyla teknolojiye yeni bir soluk getirmektir.</p>
+                <p style="color: #aaa;">Hiçbir donanımın gerçekten "eski" olmadığına inanıyoruz. Cihazlarınız üzerinde tam kontrol sağlamanız için özel yardımcı programlar üretiyoruz.</p>
             </div>
-            <div class="about-box">
-                <h3>Vizyonumuz</h3>
-                <p>Hedefimiz; teknolojinin erişilebilir, verimli ve keşfe açık olduğu bir ekosistem oluşturmaktır. İster üst düzey bir iş istasyonu ister legacy bir makine olsun, her zaman en iyi performansı sunmayı hedefliyoruz.</p>
-                <div style="margin-top: 40px; padding: 20px; background: rgba(57, 255, 20, 0.05); border-radius: 15px; border-left: 4px solid var(--neon-green);">
-                    <em>"Eski donanım yoktur, yetersiz yazılım vardır."</em>
-                </div>
+            <div class="about-stats" style="border-left: 1px solid var(--border); padding-left: 40px;">
+                <h3 style="color: var(--neon);">Vizyonumuz</h3>
+                <p style="font-size: 0.9rem; color: #666; margin-top: 15px;">
+                    Teknolojinin herkes için erişilebilir olduğu, verimliliğin en yüksek seviyede tutulduğu bir ekosistem. Legacy veya High-End, her makine OygOS ile tam kapasite çalışır.
+                </p>
             </div>
         </div>
     </section>
 
-    <section id="download">
-        <div class="download-container animate__animated animate__pulse animate__infinite">
-            <span class="status-badge">YAKINDA</span>
-            <h2>OygOS İndirme Merkezi</h2>
-            <p style="color: #666; max-width: 500px; margin: 20px auto;">
-                OygOS v1.0 kararlı sürümü için son testler yapılıyor. Sunucularımız çok yakında indirmeye açılacaktır.
+    <section class="section" id="download">
+        <div class="download-box">
+            <div class="disabled-status">// SYSTEM_OFFLINE</div>
+            <h2 style="font-size: 3rem; margin-bottom: 10px;">OygOS v1.0</h2>
+            <p style="color: #666; margin-bottom: 30px;">Debian tabanlı kararlı sürüm için dağıtım kanalları hazırlanıyor.</p>
+            <button class="wait-btn">Şu An Kullanılamıyor</button>
+            <p style="margin-top: 20px; font-family: 'Fira Code', monospace; color: #333; font-size: 0.8rem;">
+                Last Build: 2026.04.18_Alpha
             </p>
-            <button class="download-btn disabled-btn">Şu an kullanılamıyor</button>
-            <div style="margin-top: 30px; font-family: monospace; color: var(--neon-green); opacity: 0.6;">
-                > Status: Maintenance_Mode<br>
-                > Version: 1.0.2_Stable
-            </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 OygOS Project | Designed in Silivri</p>
-        <p style="font-size: 0.7em; color: #333;">Debian is a registered trademark of Software in the Public Interest, Inc.</p>
+        <p>&copy; 2026 OygOS Geliştirme Grubu | Silivri, İstanbul.</p>
+        <p style="margin-top: 10px;">"Code is temporary, optimization is forever."</p>
     </footer>
 
 </body>
